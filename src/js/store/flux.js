@@ -12,7 +12,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+			people:[],
+			planets:[],
+			starships:[],
+			favorites:[]
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -20,10 +24,39 @@ const getState = ({ getStore, getActions, setStore }) => {
 				getActions().changeColor(0, "green");
 			},
 			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
-			},
+				const fetchPeople = fetch(`https://www.swapi.tech/api/people?page=2&limit=10`).then(res => res.json());
+				const fetchPlanets = fetch(`https://www.swapi.tech/api/planets?page=2&limit=10`).then(res => res.json());
+				const fetchStarships = fetch(`https://www.swapi.tech/api/starships?page=2&limit=10`).then(res => res.json());
+			  
+				Promise.all([fetchPeople, fetchPlanets, fetchStarships])
+				  .then(([peopleData, planetsData, starshipsData]) => {
+					const updatedPeople = peopleData.results.map(character => {
+					  const uid = parseInt(character.uid);
+					  const imageURL = `https://starwars-visualguide.com/assets/img/characters/${uid}.jpg`;
+					  return { ...character, imageURL };
+					});
+			  
+					const updatedPlanets = planetsData.results.map(planet => {
+					  const planetID = parseInt(planet.uid);
+					  const imageURL = `https://starwars-visualguide.com/assets/img/planets/${planetID}.jpg`;
+					  return { ...planet, imageURL };
+					});
+			  
+					const updatedStarships = starshipsData.results.map(starship => {
+					  const starshipID = parseInt(starship.uid);
+					  const imageURL = `https://starwars-visualguide.com/assets/img/starships/${starshipID}.jpg`;
+					  return { ...starship, imageURL };
+					});
+			  
+					setStore({
+					  people: updatedPeople,
+					  planets: updatedPlanets,
+					  starships: updatedStarships
+					});
+				  })
+				  .catch(err => console.error(err));
+			  }
+			  ,
 			changeColor: (index, color) => {
 				//get the store
 				const store = getStore();
@@ -37,6 +70,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
+			},
+			addFavorites:(moreFavorite)=>{
+				const store = getStore();
+				const favorite = store.favorites.concat(moreFavorite);
+				setStore({ favorites: favorite });
+			},
+			removeFavorites:(index)=>{
+				const store = getStore();
+				const favorite = store.favorites.filter((c, i) => {
+					return index !== i
+				});
+				setStore({ favorites: favorite });
 			}
 		}
 	};
