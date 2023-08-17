@@ -16,7 +16,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			people:[],
 			planets:[],
 			starships:[],
-			favorites:[]
+			favorites:[],
+			imageCharacter:[],
+			imagePlanet:[],
+			imageStarship:[]
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -32,26 +35,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 				  .then(([peopleData, planetsData, starshipsData]) => {
 					const updatedPeople = peopleData.results.map(character => {
 					  const uid = parseInt(character.uid);
-					  const imageURL = `https://starwars-visualguide.com/assets/img/characters/${uid}.jpg`;
-					  return { ...character, imageURL };
+					  const imageCharacter = `https://starwars-visualguide.com/assets/img/characters/${uid}.jpg`;
+					  return { ...character, imageCharacter };
 					});
 			  
 					const updatedPlanets = planetsData.results.map(planet => {
 					  const planetID = parseInt(planet.uid);
-					  const imageURL = `https://starwars-visualguide.com/assets/img/planets/${planetID}.jpg`;
-					  return { ...planet, imageURL };
+					  const imagePlanet = `https://starwars-visualguide.com/assets/img/planets/${planetID}.jpg`;
+					  return { ...planet, imagePlanet };
 					});
 			  
 					const updatedStarships = starshipsData.results.map(starship => {
 					  const starshipID = parseInt(starship.uid);
-					  const imageURL = `https://starwars-visualguide.com/assets/img/starships/${starshipID}.jpg`;
-					  return { ...starship, imageURL };
+					  const imageStarship = `https://starwars-visualguide.com/assets/img/starships/${starshipID}.jpg`;
+					  return { ...starship, imageStarship };
 					});
 			  
 					setStore({
 					  people: updatedPeople,
 					  planets: updatedPlanets,
-					  starships: updatedStarships
+					  starships: updatedStarships,
+					  imageCharacter:imageCharacter,
+					  imagePlanet:imagePlanet,
+					  imageStarship:imageStarship
 					});
 				  })
 				  .catch(err => console.error(err));

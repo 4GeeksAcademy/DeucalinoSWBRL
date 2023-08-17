@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import "../../styles/home.css";
+import "../../styles/main.css";
 import { Context } from "../store/appContext";
 import { CharactersCard } from "../component/charactersCard";
 import { PlanetsCard } from "../component/planetsCard";

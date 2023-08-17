@@ -11,7 +11,7 @@ export const StNavbar = () => {
         <div className="ml-auto">
             <div className="dropdown">
                 <button
-                    className="btn btn-warning dropdown-toggle m-2"
+                    className="btn btn-warning opacity-75 text-danger dropdown-toggle m-2"
                     type="button"
                     id="dropdownMenuButton"
                     data-bs-toggle="dropdown"
