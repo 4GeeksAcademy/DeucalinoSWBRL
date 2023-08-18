@@ -17,9 +17,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			planets:[],
 			starships:[],
 			favorites:[],
-			imageCharacter:[],
-			imagePlanet:[],
-			imageStarship:[]
+			imageCharacter:"",
+			imagePlanet:"",
+			imageStarship:""
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -27,9 +27,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				getActions().changeColor(0, "green");
 			},
 			loadSomeData: () => {
-				const fetchPeople = fetch(`https://www.swapi.tech/api/people?page=2&limit=10`).then(res => res.json());
-				const fetchPlanets = fetch(`https://www.swapi.tech/api/planets?page=2&limit=10`).then(res => res.json());
-				const fetchStarships = fetch(`https://www.swapi.tech/api/starships?page=2&limit=10`).then(res => res.json());
+				const fetchPeople = fetch(`https://www.swapi.tech/api/people`).then(res => res.json());
+				const fetchPlanets = fetch(`https://www.swapi.tech/api/planets`).then(res => res.json());
+				const fetchStarships = fetch(`https://www.swapi.tech/api/starships`).then(res => res.json());
 			  
 				Promise.all([fetchPeople, fetchPlanets, fetchStarships])
 				  .then(([peopleData, planetsData, starshipsData]) => {
@@ -55,9 +55,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					  people: updatedPeople,
 					  planets: updatedPlanets,
 					  starships: updatedStarships,
-					  imageCharacter:imageCharacter,
-					  imagePlanet:imagePlanet,
-					  imageStarship:imageStarship
 					});
 				  })
 				  .catch(err => console.error(err));
