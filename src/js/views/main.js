@@ -11,28 +11,23 @@ export const Main = () => {
   const {uid}=useParams()
 
   useEffect(() => {
-    actions.loadSomeData();
-  }, []);
-  useEffect(() => {
     console.log(store.people)
   }, [])
 
   return (
     <div className="text-center mt-5 container bg-dark bg-opacity-25">
-      <h1>The Universe Grid</h1>
-
+      <h1>The Universe Grid</h1>  
+      <div class="d-flex flex-row mb-3 text-center">
       <div className="text-center ">
         <h3 className="text-warning">Characters Grid</h3>
         <div className="overflow-x-auto">
           <div className="card-grid">
-            {store.people.map((character,uid) => (
-              <CharactersCard key={character.uid} character={character} />
+            {store.people.map((character,uid) => (    
+                  <CharactersCard key={character.uid} character={character} className=" d-flex flex-row mb-3" />        
             ))}
           </div>
         </div>
-      </div>
-
-    
+      </div> 
       <div className="text-center">
         <h3 className="text-warning">Planets Grid</h3>
         <div className="overflow-x-auto">
@@ -55,6 +50,8 @@ export const Main = () => {
           </div>
         </div>
       </div>
+      </div>
+    
     </div>
   );
 };
