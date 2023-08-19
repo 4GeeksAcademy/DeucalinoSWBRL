@@ -18,7 +18,7 @@ export const CharactersCard = ({ character }) => {
           <p className="m-0">Eye Color: {character.eye_color}</p>
         </div>
         <div className="card-body d-flex justify-content-between">
-          <Link to={"/details"}>
+          <Link to={"/characters"}>
             <button className="btn btn-outline-primary" data-toggle="button" aria-pressed="false">
               <b className="text-light">Learn more!</b>
             </button>

@@ -19,7 +19,7 @@ export const PlanetsCard = ({ planet }) => {
         </div>
         <div className="card-body">
           <div className="d-flex justify-content-between mt-5">
-            <Link to={"/details"}>
+            <Link to={"/planets"}>
               <button className="btn btn-outline-primary" data-toggle="button" aria-pressed="false">
                 <b className="text-light">Learn more!</b>
               </button>

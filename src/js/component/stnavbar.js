@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 
+
 export const StNavbar = () => {
 	return (
         <nav className="navbar bg-dark mb-3">
@@ -11,7 +12,7 @@ export const StNavbar = () => {
         <div className="ml-auto">
             <div className="dropdown">
                 <button
-                    className="btn btn-outline-warning opacity-75 dropdown-toggle m-2"
+                    className="btn btn-outline-warning opacity-75 dropdown-toggle m-2 id=toggler"
                     type="button"
                     id="dropdownMenuButton"
                     data-bs-toggle="dropdown"
