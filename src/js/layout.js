@@ -26,9 +26,9 @@ const Layout = () => {
 					<Routes>
 						<Route path="/" element={<Main />} />
 						<Route path="*" element={<h1>Not found!</h1>} />
-						<Route path="/characters" element={<Characters />} />
-						<Route path="/planets" element={<Planets />} />
-						<Route path="/starships" element={<Starships />} />
+						<Route path="/characters/:uid" element={<Characters />} />
+						<Route path="/planets/:uid" element={<Planets />} />
+						<Route path="/starships/:uid" element={<Starships />} />
 					</Routes>
 					<Footer />
 				</ScrollToTop>

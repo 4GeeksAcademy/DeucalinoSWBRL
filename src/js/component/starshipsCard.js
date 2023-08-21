@@ -19,7 +19,7 @@ export const StarshipsCard = ({ starship }) => {
         </div>
         <div className="card-body">
           <div className="d-flex justify-content-between mt-5">
-            <Link to={"/starships"}>
+            <Link to={"/starships/" + starship.uid}>
               <button className="btn btn-outline-primary" data-toggle="button" aria-pressed="false">
                 <b className="text-light">Learn more!</b>
               </button>

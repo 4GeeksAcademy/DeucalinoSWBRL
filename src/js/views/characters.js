@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getStore, getState } from "react-router-dom";
 
-export const Characters = () => {
+export const Characters = (props) => {
     const { uid } = useParams();
     const [ people, setPeople]= React.useState ([])
    
@@ -11,29 +11,29 @@ export const Characters = () => {
     }, []);
     const loadSomeData= async ()=>{
       const data= await fetch(`https://www.swapi.tech/api/people/${uid}`)
-      const character= await data.json()
-      setPeople(character)
+      const people= await data.json()
+      console.log(people)
+      setPeople(people.result.properties)
       
     }
-
     if (!people) {
-        return <div>Loading...</div>;
-    }
-	const {
-        name,
-        gender,
-        height,
-        eye_color,
-        hair_color,
-        homeworld,
-        species,
-        skin_color,
-        birth_year,
-        mass,
-    } = people;
+      return <div>Loading...</div>;
+  }
 
-    // Resto de tu código para renderizar la información de los personajes
 
+
+const {
+      name,
+      gender,
+      height,
+      eye_color,
+      hair_color,
+      homeworld,
+      species,
+      skin_color,
+      birth_year,
+      mass,
+  } = people;
 
 return(
 		<div className="text-center mt-5">

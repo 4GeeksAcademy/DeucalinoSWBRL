@@ -10,8 +10,10 @@ export const Starships = () => {
     }, []);
     const loadSomeData= async ()=>{
       const data= await fetch(`https://www.swapi.tech/api/starships/${uid}`)
-      const starship= await data.json()
-      setPlanet(starship)
+      const starshipID= await data.json()
+      console.log(starshipID)
+      setStarship(starshipID.result.properties)
+     
       
     }
 	return (

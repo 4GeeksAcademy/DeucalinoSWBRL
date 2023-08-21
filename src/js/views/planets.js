@@ -12,7 +12,8 @@ export const Planets = (props) => {
     const loadSomeData= async ()=>{
       const data= await fetch(`https://www.swapi.tech/api/planets/${uid}`)
       const planetID= await data.json()
-      planetID(planetID)
+      console.log(planetID)
+      setPlanet(planetID.result.properties)
       
     }
 	return (
