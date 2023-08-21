@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 
 export const StNavbar = () => {
+    const { store, actions } = useContext(Context);
 	return (
         <nav className="navbar bg-dark mb-3">
         <Link to="/">
@@ -18,16 +19,16 @@ export const StNavbar = () => {
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                 >
-                   <b className="text-light"> Favorites</b>
+                   <b className="text-light"> Favorites<span className="badge bg-success opacity-755 text-light">{store.favorites.length}</span></b>
                 </button>
                 <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    
-                        <li className="d-flex justify-content-between">
-                            <span className="dropdown-item-text"></span>
-                            <button type="button" className="btn btn-outline-secondary">
-                            <i className="fa-solid fa-trash-can"></i>
-                            </button>
-                        </li>
+                {(store.favorites && store.favorites.length >0) ?
+							store.favorites.map((f, index) => (
+								<li key={f}>
+									<a className="dropdown-item d-flex justify-content-between" onClick={() => actions.removeFavorites(index)}>{f}<i className="fas fa-trash mt-1"></i></a>
+								</li>
+							)) : <li className="text-center">(empty)</li>
+						}
                 </ul>
             </div>
         </div>
